@@ -40,7 +40,8 @@ RSpec.describe User, type: :model do
              id: 123,
              screen_name: 'screen_name',
              name: 'name',
-             description: 'description')
+             description: 'description',
+             followers_count: 10)
     end
     let(:user) { described_class.for_twitter_user_to_user(twitter_user) }
 
@@ -56,16 +57,21 @@ RSpec.describe User, type: :model do
       expect(user.screen_name).to eq 'screen_name'
       expect(user.name).to eq 'name'
       expect(user.description).to eq 'description'
+      expect(user.past_followers.last.followers_count).to eq 10
     end
 
     context 'user already exists' do
-      before { create(:user, id: 123, name: 'old_name') }
+      before do
+        user = create(:user, id: 123, name: 'old_name')
+        user.past_followers << create(:past_follower, followers_count: 9)
+      end
 
       it 'user is update' do
         expect(twitter_user).to receive(:profile_image_url_https).with(:original).and_return('url')
 
         expect(user.id).to eq 123
         expect(user.name).to eq 'name'
+        expect(user.past_followers.last.followers_count).to eq 10
       end
     end
 
@@ -75,7 +81,8 @@ RSpec.describe User, type: :model do
                id: 123,
                screen_name: 'screen_name',
                name: 'name',
-               description: Twitter::NullObject.new)
+               description: Twitter::NullObject.new,
+               followers_count: 10)
       end
 
       it 'convert argment to a user' do

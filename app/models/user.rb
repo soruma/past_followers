@@ -13,6 +13,7 @@ class User < ApplicationRecord
     user.name = twitter_user.name
     user.description = twitter_user.description.presence
     user.profile_image_url = twitter_user.profile_image_url_https(:original)
+    user.past_followers.new(followers_count: twitter_user.followers_count)
 
     user
   end
