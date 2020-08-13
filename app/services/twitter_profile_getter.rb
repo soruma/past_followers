@@ -1,18 +1,28 @@
 # frozen_string_literal: true
 
 class TwitterProfileGetter < TwitterClientCreator
-  def initialize(screen_name:)
+  def initialize(args)
     super
 
-    @screen_name = screen_name
+    @user = if args[:user]
+              args[:user]
+            elsif args[:screen_name]
+              User.new(screen_name: args[:screen_name])
+            elsif args[:user_id]
+              User.new(id: args[:user_id])
+            end
   end
 
   # Return Twitter::User class
   def call
-    client.user(screen_name)
+    if user.id
+      client.user(user.id)
+    else
+      client.user(user.screen_name)
+    end
   end
 
   private
 
-  attr_reader :screen_name
+  attr_reader :user
 end
