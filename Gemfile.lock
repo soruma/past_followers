@@ -269,6 +269,9 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
+    validate_url (1.0.11)
+      activemodel (>= 3.0.0)
+      public_suffix
     vcr (6.0.0)
     webmock (3.8.3)
       addressable (>= 2.3.6)
@@ -300,6 +303,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   twitter
   tzinfo-data
+  validate_url
   vcr
   webmock
 

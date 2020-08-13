@@ -3,6 +3,33 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'validation' do
+    it 'is valid with name and screen_name and profile_image_url' do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+
+    it 'does not allow blank name' do
+      user = build(:user, name: nil)
+      expect(user).to be_invalid
+    end
+
+    it 'does not allow blank screen_name' do
+      user = build(:user, screen_name: nil)
+      expect(user).to be_invalid
+    end
+
+    it 'does not allow blank profile_image_url' do
+      user = build(:user, profile_image_url: nil)
+      expect(user).to be_invalid
+    end
+
+    it 'does not allow not url format profile_image_url' do
+      user = build(:user, profile_image_url: 'alice')
+      expect(user).to be_invalid
+    end
+  end
+
   describe '.for_twitter_user_to_user' do
     let(:twitter_user) do
       double('Twitter User',
