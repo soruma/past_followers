@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :past_followers, dependent: :destroy
+
   validates :name, :screen_name, :profile_image_url, presence: true
   validates :profile_image_url, url: true
 

@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'association' do
+    it { is_expected.to have_many(:past_followers).dependent(:destroy) }
+  end
+
   describe 'validation' do
     it 'is valid with name and screen_name and profile_image_url' do
       user = build(:user)
