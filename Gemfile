@@ -54,7 +54,7 @@ gem 'rails-i18n', '~> 6.0.0'
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
+  gem 'simplecov'
   gem 'vcr'
   gem 'webmock', require: false
 end

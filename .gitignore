@@ -33,3 +33,6 @@
 
 # Ignore local settings
 .env.local
+
+# Ignore coverage files
+/coverage
