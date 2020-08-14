@@ -1,0 +1,14 @@
+query ($id: Int!) {
+  user(id: $id) {
+    id
+    screenName
+    name
+    description
+    profileImageUrl
+    createdAt
+    updatedAt
+    pastFollowers {
+      followersCount
+    }
+  }
+}
