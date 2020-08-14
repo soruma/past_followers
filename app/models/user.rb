@@ -6,6 +6,14 @@ class User < ApplicationRecord
   validates :name, :screen_name, :profile_image_url, presence: true
   validates :profile_image_url, url: true
 
+  def self.update_profile(args)
+    twitter_user = TwitterProfileGetter.call(args)
+    user = for_twitter_user_to_user(twitter_user)
+    user.save!
+
+    user
+  end
+
   def self.for_twitter_user_to_user(twitter_user)
     user = find_or_initialize_by(id: twitter_user.id)
 
@@ -17,4 +25,5 @@ class User < ApplicationRecord
 
     user
   end
+  private_class_method :for_twitter_user_to_user
 end

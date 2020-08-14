@@ -9,6 +9,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ENV['INIT_USERS'].split(',').each do |screen_name|
-  twitter_user = TwitterProfileGetter.call(screen_name: screen_name)
-  User.for_twitter_user_to_user(twitter_user).save
+  User.update_profile(screen_name: screen_name)
 end

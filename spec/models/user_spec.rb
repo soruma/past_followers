@@ -34,16 +34,29 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '.update_profile' do
+    let(:target_user) { create(:user, id: 117_057_091, name: 'old_name') }
+
+    it 'return updated user' do
+      VCR.use_cassette('twitter/user/show/soruma_query_user_id_', match_requests_on: [:uri]) do
+        user = described_class.update_profile(user: target_user)
+
+        expect(user.name).to eq 'そるま'
+      end
+    end
+  end
+
   describe '.for_twitter_user_to_user' do
     let(:twitter_user) do
-      double('Twitter User',
-             id: 123,
-             screen_name: 'screen_name',
-             name: 'name',
-             description: 'description',
-             followers_count: 10)
+      Twitter::User.new(
+        id: 123,
+        screen_name: 'screen_name',
+        name: 'name',
+        description: 'description',
+        followers_count: 10
+      )
     end
-    let(:user) { described_class.for_twitter_user_to_user(twitter_user) }
+    let(:user) { described_class.send(:for_twitter_user_to_user, twitter_user) }
 
     before do
       allow(twitter_user).to receive(:profile_image_url_https).with(:original).and_return('url')
@@ -77,12 +90,13 @@ RSpec.describe User, type: :model do
 
     context 'witout description' do
       let(:twitter_user) do
-        double('Twitter User',
-               id: 123,
-               screen_name: 'screen_name',
-               name: 'name',
-               description: Twitter::NullObject.new,
-               followers_count: 10)
+        Twitter::User.new(
+          id: 123,
+          screen_name: 'screen_name',
+          name: 'name',
+          description: Twitter::NullObject.new,
+          followers_count: 10
+        )
       end
 
       it 'convert argment to a user' do
