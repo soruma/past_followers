@@ -3,6 +3,7 @@ require: rubocop-rails
 AllCops:
   NewCops: enable
   Exclude:
+    - app/controllers/graphql_controller.rb
     - bin/*
     - db/schema.rb
     - log/**/*

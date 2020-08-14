@@ -7,6 +7,8 @@ WORKDIR /usr/local/src/myapp
 RUN apk upgrade --no-cache \
  && apk add --no-cache \
         build-base \
-        sqlite-dev
+        nodejs \
+        sqlite-dev \
+        tzdata
 
 RUN gem install bundler:2.1.4
