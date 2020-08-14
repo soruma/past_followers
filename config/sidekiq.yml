@@ -2,3 +2,7 @@
 :logfile: ./log/sidekiq.log
 :queues:
   - default
+:schedule:
+  update_twitter_profile:
+    cron: '0 0 * * *'
+    class: UpdateTwitterProfileJob
