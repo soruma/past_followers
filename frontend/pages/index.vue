@@ -1,12 +1,23 @@
 <template>
-  <div :class="$style.container">
+  <v-container>
     <h1>Users</h1>
-    <ul>
-      <li v-for="user in users" :key="user.id">
-        {{ user.name }}
-      </li>
-    </ul>
-  </div>
+
+    <v-row>
+      <v-col v-for="user in users" :key="user.id" :cols="6">
+        <v-card>
+          <v-list-item>
+            <v-list-item-avatar size="70px">
+              <v-img :src="user.profileImageUrl"></v-img>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title v-text="user.name"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -36,15 +47,10 @@ export default Vue.extend({
         users {
           id
           name
+          profileImageUrl
         }
       }
     `
   }
 })
 </script>
-
-<style module>
-.container {
-  margin: 10px;
-}
-</style>
