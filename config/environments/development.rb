@@ -50,4 +50,9 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Add the backend container to the header attack whitelist.
+  # This is used to create schema in the frontend container.
+  # refs: https://guides.rubyonrails.org/configuring.html#configuring-middleware
+  config.hosts << 'backend'
 end

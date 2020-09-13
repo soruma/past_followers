@@ -43,7 +43,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: ''
+        httpEndpoint: 'http://backend:3000/graphql'
       }
     }
   },

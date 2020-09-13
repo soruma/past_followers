@@ -20,3 +20,12 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Generate GraphQL schema file
+
+When the GraphQL schema changes, `lib/GraphQL/generated.ts` must be update.
+This feature uses the `@graphql-codegen/typescript package`.
+
+```
+yarn run graphql-codegen --config codegen.yml
+```

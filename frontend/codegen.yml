@@ -1,0 +1,6 @@
+overwrite: true
+schema: "http://backend:3000/graphql"
+generates:
+  lib/GraphQL/generated.ts:
+    plugins:
+      - "typescript"
