@@ -7,4 +7,5 @@ RUN apk upgrade --no-cache \
  && apk add --no-cache \
         g++ \
         make \
-        python
+        python \
+ && yarn global add @vue/cli
