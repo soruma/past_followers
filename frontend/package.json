@@ -15,7 +15,7 @@
     "@nuxtjs/apollo": "^4.0.0-rc19",
     "graphql-tag": "^2.10.3",
     "nuxt": "^2.0.0",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.3.10"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.1",
