@@ -4,7 +4,7 @@
       <v-col v-for="user in users" :key="user.id" :cols="6">
         <v-card>
           <v-list-item>
-            <v-list-item-avatar size="70px">
+            <v-list-item-avatar size="70px" class="user-avatar">
               <v-img :src="user.profileImageUrl"></v-img>
             </v-list-item-avatar>
 
@@ -52,3 +52,9 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style>
+.user-avatar {
+  margin-right: 10px;
+}
+</style>
