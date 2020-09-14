@@ -29,17 +29,17 @@ export type Query = {
 
 
 export type QueryPastFollowerArgs = {
-  id: Scalars['Int'];
+  id: Scalars['ID'];
 };
 
 
 export type QueryPastFollowersArgs = {
-  userId: Scalars['Int'];
+  userId: Scalars['ID'];
 };
 
 
 export type QueryUserArgs = {
-  id: Scalars['Int'];
+  id: Scalars['ID'];
 };
 
 export type User = {
