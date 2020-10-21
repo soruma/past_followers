@@ -24,6 +24,7 @@
 import Vue from 'vue'
 import gql from 'graphql-tag'
 import { User } from '~/lib/GraphQL/generated'
+import 'vue-apollo'
 
 interface Data {
   users?: User[]
