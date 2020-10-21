@@ -10,7 +10,7 @@ import gql from 'graphql-tag'
 import { User } from '~/lib/GraphQL/generated'
 
 interface Data {
-  user: User
+  user?: User
 }
 
 export default Vue.extend({
