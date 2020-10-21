@@ -39,13 +39,20 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/apollo', '@nuxtjs/vuetify'],
+  modules: [
+    '@nuxtjs/apollo',
+    '@nuxtjs/proxy',
+    '@nuxtjs/vuetify'
+  ],
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://backend:3000/graphql'
+        httpEndpoint: 'http://localhost:8000/graphql'
       }
     }
+  },
+  proxy: {
+    '/graphql': 'http://backend:3000'
   },
   server: {
     port: 8000,
