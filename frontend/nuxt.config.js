@@ -39,11 +39,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxtjs/apollo',
-    '@nuxtjs/proxy',
-    '@nuxtjs/vuetify'
-  ],
+  modules: ['@nuxtjs/apollo', '@nuxtjs/proxy', '@nuxtjs/vuetify'],
   apollo: {
     clientConfigs: {
       default: {

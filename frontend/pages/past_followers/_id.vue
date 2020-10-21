@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ this.user.name }}</h1>
+    <h1>{{ user.name }}</h1>
   </div>
 </template>
 
@@ -18,12 +18,26 @@ interface Data {
 export default Vue.extend({
   data(): Data {
     return {
-      user: { name: '', createdAt: null, id: '', pastFollowers: [], updatedAt: null }
+      user: {
+        name: '',
+        createdAt: null,
+        id: '',
+        pastFollowers: [],
+        updatedAt: null
+      }
     }
   },
   computed: {
     findUser(): User {
-      if (this.user == null) return { name: '', createdAt: null, id: '', pastFollowers: [], updatedAt: null }
+      if (this.user == null) {
+        return {
+          name: '',
+          createdAt: null,
+          id: '',
+          pastFollowers: [],
+          updatedAt: null
+        }
+      }
       return this.user
     }
   },
