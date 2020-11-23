@@ -3,24 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
-  subject { post graphql_path, params: { query: query }.merge(args) }
+  subject { post graphql_path, params: { query: query }.merge(variables) }
 
-  describe '#show' do
-    before do
-      user = create(:user,
-                    id: 123,
-                    screen_name: 'アリス',
-                    name: 'alice',
-                    description: 'アリスの説明',
-                    profile_image_url: 'http://example.com/profile_image.png',
-                    created_at: Time.zone.parse('2020-05-11 10:00:00'),
-                    updated_at: Time.zone.parse('2020-06-21 11:20:00'))
-
-      user.past_followers << create(:past_follower, followers_count: 2)
+  describe 'ShowUser' do
+    let(:user) do
+      create(:user,
+             id: 123,
+             screen_name: 'アリス',
+             name: 'alice',
+             description: 'アリスの説明',
+             profile_image_url: 'http://example.com/profile_image.png',
+             created_at: Time.zone.parse('2020-05-11 10:00:00'),
+             updated_at: Time.zone.parse('2020-06-21 11:20:00'))
     end
 
+    before { create(:past_follower, followers_count: 2, user: user) }
+
     let(:query) { GraphQL::Requests.user }
-    let(:args) { { variables: '{ "id": 123 }' } }
+    let(:variables) { { variables: { id: user.id } } }
 
     it 'return user in json format using id' do
       subject

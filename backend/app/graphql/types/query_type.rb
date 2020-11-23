@@ -15,14 +15,14 @@ module Types
     end
 
     field :past_followers, [Types::PastFollowerType], null: false do
-      argument :user_id, ID, required: true
+      argument :user_id, Int, required: true
     end
     def past_followers(user_id:)
       PastFollower.where(user_id: user_id)
     end
 
     field :past_follower, Types::PastFollowerType, null: false do
-      argument :id, ID, required: true
+      argument :id, Int, required: true
     end
     def past_follower(id:)
       PastFollower.find(id).order(:create_at)
